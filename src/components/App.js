@@ -4,7 +4,7 @@ import Table from './Table';
 import Form from './Form';
 import { connect } from 'react-redux';
 import { delete_user } from '../redux/actions/index';
-
+import fire from '../config/fire';
 
 
 class App extends Component {
@@ -15,12 +15,15 @@ class App extends Component {
         this.setState({ characters: [...this.props.data, character] });
     }
     handleSubmit2 = data => {
-        this.setState({ characters: this.props.data} );
+        this.setState({ characters: this.props.data });
+    }
+    logout() {
+        fire.auth().signOut();
     }
 
 
     render() {
-        const { characters } = this.state ;
+        const { characters } = this.state;
         return (
             <div className="container">
                 <h1>Add user</h1>
@@ -31,7 +34,11 @@ class App extends Component {
                     characterData={characters}
                     removeCharacter={this.props.removeCharacter}
                 />
+                <div style={{ textAlign: 'center' }}>
+                    <button onClick={this.logout}>Logout</button>
+                </div>
             </div>
+
         );
     }
 }
