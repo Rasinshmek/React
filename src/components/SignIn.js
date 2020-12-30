@@ -12,17 +12,17 @@ import * as yup from 'yup';
 import { connect } from 'react-redux'
 import { logIn } from '../redux/actions';
 import fire from '../config/fire';
-
+import App from './App';
 class SignIn extends Component {
 
   state = {
-    password: '',
-    email: ''
-  };
+    password: null,
+    email: null,
+  }
   signUp() {
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-    fire.auth().createUserWithEmailAndPassword(email,password)
+    fire.auth().createUserWithEmailAndPassword(email, password)
       .then((u) => {
         console.log('Successfully Signed Up');
       })
@@ -91,72 +91,70 @@ class SignIn extends Component {
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
-              <Avatar className={classes.avatar}>
+               <Avatar className={classes.avatar}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Sign in
         </Typography>
-             
-                <TextField
-                  variant="outlined"
-                  type={'text'}
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name={'email'}
-                  autoComplete="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <TextField
-                  variant="outlined"
-                  type={'text'}
-                  margin="normal"
-                  required
-                  fullWidth
-                  name={'password'}
-                  label="Password"
-                  type="password"
-                  id="password"
-                  value={values.password}
-                  autoComplete="current-password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <Button
-                  type={'submit'}
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={this.login}
-                >
-                  Login
-          </Button>
-          <div>
-            <br></br>
-          </div>
-                <Button
-                  type={'submit'}
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={this.signUp}
-                >
-                  Sign Up
-          </Button>
 
+               <TextField
+                variant="outlined"
+                type={'text'}
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name={'email'}
+                autoComplete="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <TextField
+                variant="outlined"
+                type={'text'}
+                margin="normal"
+                required
+                fullWidth
+                name={'password'}
+                label="Password"
+                type="password"
+                id="password"
+                value={values.password}
+                autoComplete="current-password"
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <Button
+                type={'submit'}
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={this.login}
+              >
+                Login
+          </Button>
+               <div>
+                <br></br>
+              </div>
+              <Button
+                type={'submit'}
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={this.signUp}
+              >
+                Sign Up
+          </Button>
             </div>
           </Container>
         )}
       </Formik>
-    );
-
+    )
   }
 }
 const mapStateToProps = (state) => {

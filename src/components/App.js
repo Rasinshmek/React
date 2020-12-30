@@ -35,7 +35,7 @@ class App extends Component {
                     removeCharacter={this.props.removeCharacter}
                 />
                 <div style={{ textAlign: 'center' }}>
-                    <button onClick={this.logout}>Logout</button>
+                {!this.props.googleUser &&<button onClick={this.logout}>Logout</button>}                 
                 </div>
             </div>
 
